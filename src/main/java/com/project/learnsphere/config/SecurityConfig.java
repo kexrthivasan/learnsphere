@@ -1,7 +1,5 @@
 package com.project.learnsphere.config;
 
-
-
 import com.project.learnsphere.security.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
