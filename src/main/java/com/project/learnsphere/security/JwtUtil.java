@@ -27,18 +27,18 @@ public class JwtUtil {
         return extractClaim(token, Claims::getSubject);
     }
 
-//    public String generateToken(UserDetails userDetails) {
-//        // Create a map for extra claims
-//        Map<String, Object> extraClaims = new HashMap<>();
-//
-//        // Add roles to the claims map
-//        String roles = userDetails.getAuthorities().stream()
-//                .map(GrantedAuthority::getAuthority)
-//                .collect(Collectors.joining(","));
-//        extraClaims.put("roles", roles);
-//
-//        return generateToken(extraClaims, userDetails);
-//    }
+    public String generateToken(UserDetails userDetails) {
+        // Create a map for extra claims
+        Map<String, Object> extraClaims = new HashMap<>();
+
+        // Add roles to the claims map
+        String roles = userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(","));
+        extraClaims.put("roles", roles);
+
+        return generateToken(extraClaims, userDetails);
+    }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
@@ -52,7 +52,7 @@ public class JwtUtil {
 
     private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         return Jwts.builder()
-                .setClaims(extraClaims) // Set the extra claims here
+                .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))

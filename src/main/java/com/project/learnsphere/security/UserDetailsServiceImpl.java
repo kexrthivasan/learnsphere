@@ -1,5 +1,6 @@
 package com.project.learnsphere.security;
 import com.project.learnsphere.models.User;
+import com.project.learnsphere.repositories.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
